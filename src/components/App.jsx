@@ -16,11 +16,11 @@ function App() {
   }
 
   function handleUpdatePlant(updatedPlant) {
-    setPlants(
-      plants.map((plant) =>
-        plant.id === updatedPlant.id ? updatedPlant : plant
-      )
+    const updatedPlants = plants.map((plant) =>
+      plant.id === updatedPlant.id ? updatedPlant : plant
     );
+
+    setPlants(updatedPlants);
   }
 
   return (

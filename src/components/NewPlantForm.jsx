@@ -20,8 +20,7 @@ function NewPlantForm({ onAddPlant }) {
     const newPlant = {
       name: formData.name,
       image: formData.image,
-      price: Number(formData.price),
-      inStock: true,
+      price: formData.price,
     };
 
     fetch("http://localhost:6001/plants", {
@@ -34,6 +33,7 @@ function NewPlantForm({ onAddPlant }) {
       .then((res) => res.json())
       .then((plant) => {
         onAddPlant(plant);
+
         setFormData({
           name: "",
           image: "",

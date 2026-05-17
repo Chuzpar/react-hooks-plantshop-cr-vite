@@ -1,19 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import NewPlantForm from "./NewPlantForm";
-import PlantList from "./PlantList";
 import Search from "./Search";
+import PlantList from "./PlantList";
 
-function PlantPage() {
-  useEffect(() => {
-  fetch("/plants")
-    .then((res) => res.json())
-    .then((data) => setPlants(data));
-  }, []);
+function PlantPage({ plants, onAddPlant, onUpdatePlant }) {
+  const [search, setSearch] = useState("");
+
+  const displayedPlants = plants.filter((plant) =>
+    plant.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <main>
-      <NewPlantForm />
-      <Search />
-      <PlantList />
+      <NewPlantForm onAddPlant={onAddPlant} />
+      <Search search={search} onSearchChange={setSearch} />
+      <PlantList plants={displayedPlants} onUpdatePlant={onUpdatePlant} />
     </main>
   );
 }
